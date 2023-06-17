@@ -1,8 +1,9 @@
 package darwin
 
 import (
-	"howett.net/plist"
 	"os/exec"
+
+	"howett.net/plist"
 )
 
 func Check() bool {
