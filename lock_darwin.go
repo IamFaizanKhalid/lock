@@ -1,7 +1,8 @@
 package lock
 
 import (
-	"github.com/IamFaizanKhalid/lock/darwin"
+	"os/exec"
+	"strings"
 	"time"
 )
 
@@ -18,7 +19,7 @@ func listen(ch chan<- struct{}) {
 		// Wait for the next tick.
 		<-ticker.C
 
-		isLocked := darwin.Check()
+		isLocked := checkCGSSession()
 
 		if !wasLocked && isLocked {
 			ch <- struct{}{}
@@ -26,4 +27,10 @@ func listen(ch chan<- struct{}) {
 
 		wasLocked = isLocked
 	}
+}
+
+func checkCGSSession() bool {
+	cmd, _ := exec.Command("ioreg", "-n", "Root", "-d1", "-a").Output()
+
+	return strings.Contains(string(cmd), "CGSSessionScreenIsLocked")
 }

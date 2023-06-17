@@ -20,7 +20,7 @@ func listen(ch chan<- struct{}) {
 
 		// FIXME: first condition will work after system wakes from sleep
 
-		isLocked := newTime.Sub(lastTime).Seconds() > 5 || isLogonUIRunnning()
+		isLocked := newTime.Sub(lastTime).Seconds() > 5 || isLogonUIRunning()
 
 		if !wasLocked && isLocked {
 			ch <- struct{}{}
@@ -31,7 +31,7 @@ func listen(ch chan<- struct{}) {
 	}
 }
 
-func isLogonUIRunnning() bool {
+func isLogonUIRunning() bool {
 	cmd, _ := exec.Command("tasklist").Output()
 
 	return strings.Contains(string(cmd), "LogonUI")
