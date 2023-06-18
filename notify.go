@@ -13,3 +13,7 @@ func HandleEvents(h EventHandler) {
 		h(e)
 	}
 }
+
+func IsScreenLocked() bool {
+	return isScreenLocked()
+}
