@@ -1,8 +1,10 @@
 package lock
 
 import (
+	"context"
 	"os/exec"
 	"strings"
+	"time"
 )
 
 func isScreenLocked() bool {
