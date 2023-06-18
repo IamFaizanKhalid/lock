@@ -10,8 +10,8 @@ func isScreenLocked() bool {
 	defer cancel()
 
 	// This will output a list of tasks currently running
-	cmd, _ := exec.CommandContext(ctx, "tasklist").Output()
+	output, _ := exec.CommandContext(ctx, "tasklist").Output()
 
 	// This will check if LogonUI.exe is in the list
-	return strings.Contains(string(cmd), "LogonUI")
+	return strings.Contains(string(output), "LogonUI")
 }
