@@ -8,7 +8,7 @@ import (
 )
 
 func main() {
-	for range lock.Notify() {
-		fmt.Println(time.Now().Format(time.TimeOnly), "screen locked")
+	for e := range lock.Notify() {
+		fmt.Println(e.Time.Format(time.TimeOnly), e.Locked)
 	}
 }

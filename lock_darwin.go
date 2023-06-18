@@ -6,7 +6,9 @@ import (
 )
 
 func isScreenLocked() bool {
-	cmd, _ := exec.Command("ioreg", "-n", "Root", "-d1", "-a").Output()
+	// This will output a plist with session information
+	output, _ := exec.Command("ioreg", "-n", "Root", "-d1", "-a").Output()
 
-	return strings.Contains(string(cmd), "CGSSessionScreenIsLocked")
+	// This will check if output["IOConsoleUsers"][0]["CGSSessionScreenIsLocked"] exists
+	return strings.Contains(string(output), "CGSSessionScreenIsLocked")
 }
