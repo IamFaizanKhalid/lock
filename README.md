@@ -5,6 +5,10 @@
 
 A simple Golang package to get notified when the screen gets locked.
 
+⚠️ **Warnings:**
+1. This was developed as an experiment and may not always work.
+2. It currently supports only macOS, Windows and Linux.
+3. Not tested on all linux desktops
 
 ## Installation
 
