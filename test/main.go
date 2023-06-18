@@ -8,7 +8,9 @@ import (
 )
 
 func main() {
-	for e := range lock.Notify() {
-		fmt.Println(e.Time.Format(time.TimeOnly), e.Locked)
-	}
+	lock.HandleEvents(lockEventHandler)
+}
+
+func lockEventHandler(e lock.Event) {
+	fmt.Println(e.Time.Format(time.TimeOnly), e.Locked)
 }
