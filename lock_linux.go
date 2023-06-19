@@ -45,8 +45,8 @@ func isScreenLocked() bool {
 		)
 	default: // default to gnome
 		return check(
-			"gdbus call -e -d org.gnome.SessionManager -o /org/gnome/SessionManager/Presence -m org.freedesktop.DBus.Properties.Get org.gnome.SessionManager.Presence status",
-			"3>",
+			"gdbus call --session --dest org.gnome.ScreenSaver --object-path /org/gnome/ScreenSaver --method org.gnome.ScreenSaver.GetActive",
+			"true",
 		)
 	}
 
