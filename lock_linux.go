@@ -2,6 +2,7 @@ package lock
 
 import (
 	"context"
+	"os"
 	"os/exec"
 	"strings"
 	"time"
@@ -45,9 +46,11 @@ func isScreenLocked() bool {
 	default: // default to gnome
 		return check(
 			"gdbus call -e -d org.gnome.SessionManager -o /org/gnome/SessionManager/Presence -m org.freedesktop.DBus.Properties.Get org.gnome.SessionManager.Presence status",
-			"idle",
+			"3>",
 		)
 	}
+
+	return false
 }
 
 func check(cmdStr, contains string) bool {
